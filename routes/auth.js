@@ -17,23 +17,29 @@ router.post('/register', async(req,res) => {
         try{
             //check user exist
             const user = await User.findOne({username})
+            console.log("Hello JWT")
             if(user){
                 console.log("new account is existed")
+                console.log("Hello JWT")
                 return res.status(400).json({success: false, message:'User already existed'})
             }else{
                 console.log("Creating new account")
                 console.log("Hello JWT")
                 const hashedPassword = await argon2.hash(password)
+                console.log("Hello JWT")
                 console.log(hashedPassword)
                 const newUser = new User({username, password: hashedPassword})
                 console.log(newUser)
+                console.log("Hello JWT")
                 await newUser.save()
                 console.log("Save new User success")
+                console.log("Hello JWT")
 
                 //give back token 
                 // console.log("creating token access")
-                const accessToken = jwt.sign({userId: newUser._id}, process.env.ACCESS_TOKEN_SECRET )
+                const accessToken = jwt.sign({userId: newUser._id}, process.env.ACCESS_TOKEN_SECRET )console.log("Hello JWT")
                 console.log("Token is" + accessToken)
+                console.log("Hello JWT")
                 return res.json({success: true, message: "User created successfully",accessToken})
                 // return res.json({success: true, message: "User created successfully"})
             }
