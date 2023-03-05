@@ -25,6 +25,7 @@ router.post('/register', async(req,res) => {
             }else{
                 console.log("Creating new account")
                 console.log("Hello JWT")
+                console.log("Hello JWT2")
                 const hashedPassword = await argon2.hash(password)
                 console.log("Hello JWT")
                 console.log(hashedPassword)
@@ -37,7 +38,8 @@ router.post('/register', async(req,res) => {
 
                 //give back token 
                 // console.log("creating token access")
-                const accessToken = jwt.sign({userId: newUser._id}, process.env.ACCESS_TOKEN_SECRET )console.log("Hello JWT")
+                const accessToken = jwt.sign({userId: newUser._id}, process.env.ACCESS_TOKEN_SECRET )
+                console.log("Hello JWT")
                 console.log("Token is" + accessToken)
                 console.log("Hello JWT")
                 return res.json({success: true, message: "User created successfully",accessToken})
