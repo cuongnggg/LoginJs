@@ -22,7 +22,7 @@ router.post('/register', async(req,res) => {
                 return res.status(400).json({success: false, message:'User already existed'})
             }else{
                 console.log("Creating new account")
-                console.log("Hello Github")
+                console.log("Hello JWT")
                 const hashedPassword = await argon2.hash(password)
                 console.log(hashedPassword)
                 const newUser = new User({username, password: hashedPassword})
